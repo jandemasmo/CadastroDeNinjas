@@ -1,6 +1,10 @@
-package com.jandemasmo.CadastroDeNinjas;
+package com.jandemasmo.CadastroDeNinjas.Ninjas;
 
+import com.jandemasmo.CadastroDeNinjas.Missoes.MissoesModel;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name ="tb_cadastro_de_ninjas")
@@ -11,8 +15,17 @@ public class NinjaModel {
     private Long id;
 
     private String nome;
+
     private String email;
+
     private int idade;
+
+    /*   @ManyToOne - Muitos ninjas para 1 missão    */
+    @ManyToOne
+    @JoinColumn(name = "missoes_id") //foreing key (chave estrangeira)
+    private MissoesModel missoes;
+
+
 
     public NinjaModel(String nome, String email, int idade) {
         this.nome = nome;
